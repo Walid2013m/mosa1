@@ -1,1 +1,622 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر التحف الخشبية الفاخرة</title>
+    <!-- خط تجوال من Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================================
+           1. المتغيرات العامة والتنسيقات الأساسية (Theme Variables)
+           ========================================================== */
+        :root {
+            --primary-wood: #2c1810;     /* بني خشبي داكن */
+            --secondary-wood: #8b5a2b;   /* بني خشبي دافئ */
+            --accent-gold: #d4af37;       /* ذهبي فاخر */
+            --accent-hover: #b89628;      /* درجة ذهبي أغمق للضغط */
+            --bg-light: #fdfbf7;          /* خلفية بيج دافئة */
+            --text-dark: #1f1f1f;         /* لون النصوص الرئيسية */
+            --text-muted: #666666;        /* لون النصوص الثانوية */
+            --white: #ffffff;
+            --danger: #e74c3c;            /* لون الحذف والتنبيهات */
+            --success: #2ecc71;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        /* ==========================================================
+           2. الهيدر وشريط التنقل (Header & Navigation)
+           ========================================================== */
+        header {
+            background: linear-gradient(135deg, var(--primary-wood), #1a0f0a);
+            color: var(--white);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            text-decoration: none;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .search-bar input::placeholder {
+            color: #ccc;
+        }
+
+        .search-bar input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent-gold);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.4rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .btn-gold {
+            background-color: var(--accent-gold);
+            color: var(--primary-wood);
+        }
+
+        .btn-gold:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-gold);
+            color: var(--primary-wood);
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: var(--white);
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+
+        /* ==========================================================
+           3. القسم الرئيسي (Hero Banner)
+           ========================================================== */
+        .hero {
+            background: linear-gradient(rgba(44, 24, 16, 0.85), rgba(44, 24, 16, 0.85)), 
+                        url('https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?auto=format&fit=crop&w=1350&q=80') center/cover;
+            color: var(--white);
+            padding: 4rem 1rem;
+            text-align: center;
+            border-bottom: 4px solid var(--accent-gold);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent-gold);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #e0e0e0;
+        }
+
+        /* ==========================================================
+           4. حاوية المحتوى الرئيسية والمنتجات (Products Container)
+           ========================================================== */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-wood);
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 3px;
+            background: var(--accent-gold);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        /* كرت المنتج */
+        .product-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(139, 90, 43, 0.1);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        .product-img-wrapper {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            position: relative;
+        }
+
+        .product-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .product-info {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 1.25rem;
+            color: var(--primary-wood);
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+        }
+
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 0.8rem;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--secondary-wood);
+        }
+
+        .admin-delete-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(231, 76, 60, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            z-index: 5;
+        }
+
+        .admin-delete-btn:hover {
+            background: var(--danger);
+            transform: scale(1.1);
+        }
+
+        /* ==========================================================
+           5. لوحة تحكم الأدمن (Admin Panel)
+           ========================================================== */
+        .admin-panel {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+            border-right: 5px solid var(--accent-gold);
+            display: none; /* مخفي بشكل افتراضي */
+        }
+
+        .admin-panel.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .admin-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 700;
+            color: var(--primary-wood);
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group textarea {
+            padding: 0.7rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--secondary-wood);
+            box-shadow: 0 0 0 3px rgba(139, 90, 43, 0.1);
+        }
+
+        /* ==========================================================
+           6. النوافذ المنبثقة (Modals)
+           ========================================================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-card {
+            background: var(--white);
+            width: 90%;
+            max-width: 450px;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transform: translateY(20px);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .modal-header h3 {
+            color: var(--primary-wood);
+            font-size: 1.5rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .error-msg {
+            color: var(--danger);
+            font-size: 0.85rem;
+            margin-top: 0.2rem;
+            display: none;
+        }
+
+        .whatsapp-options {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.2rem;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1da851;
+        }
+
+        /* ==========================================================
+           7. التجاوب مع مختلف الشاشات (Responsive Design)
+           ========================================================== */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-bar {
+                max-width: 100%;
+                order: 3;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .whatsapp-options {
+                flex-direction: column;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">🪵 أركان للتحف الخشبية</a>
+            
+            <div class="search-bar">
+                <input type="text" id="searchInput" oninput="filterProducts()" placeholder="ابحث عن تحفة فنية...">
+            </div>
+
+            <div class="nav-actions">
+                <button class="btn btn-outline" id="adminToggleBtn" onclick="openAdminLoginModal()">
+                    🔒 دخول الأدمن
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>تحف فنية منحوتة بدقة وشغف</h1>
+        <p>نُحول خشب الزيتون والأشجار النادرة إلى قطع فنية فاخرة تُزين منزلكم وتدوم لأجيال.</p>
+    </section>
+
+    <main class="container">
+        
+        <!-- Admin Panel Section -->
+        <section class="admin-panel" id="adminPanel">
+            <div class="admin-header">
+                <h3>⚙️ لوحة تحكم إدارة المتجر</h3>
+                <button class="btn btn-danger" onclick="logoutAdmin()">تسجيل الخروج</button>
+            </div>
+            
+            <form class="admin-form" id="addProductForm" onsubmit="addNewProduct(event)">
+                <div class="form-group">
+                    <label for="pName">اسم التحفة الفنية</label>
+                    <input type="text" id="pName" placeholder="مثال: منحوتة الغزال الأصيل" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pPrice">السعر (₪ / $)</label>
+                    <input type="number" id="pPrice" placeholder="مثال: 350" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pImgType">مصدر الصورة</label>
+                    <select id="pImgType" onchange="toggleImgInput()" style="padding:0.7rem; border-radius:6px; border:1px solid #ddd;">
+                        <option value="url">رابط صورة (URL)</option>
+                        <option value="file">رفع من الجهاز</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="urlInputGroup">
+                    <label for="pImgUrl">رابط الصورة</label>
+                    <input type="url" id="pImgUrl" placeholder="https://example.com/image.jpg">
+                </div>
+
+                <div class="form-group" id="fileInputGroup" style="display: none;">
+                    <label for="pFile">اختر صورة من الجهاز</label>
+                    <input type="file" id="pFile" accept="image/*">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="pDesc">وصف مختصر للتحفة</label>
+                    <textarea id="pDesc" rows="3" placeholder="اكتب وصفاً يوضح نوع الخشب والتفاصيل..." required></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                    <button type="submit" class="btn btn-gold">إضافة التحفة للمتجر</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Products Section -->
+        <section class="section-title">
+            <h2>المجموعة الفنية المختارة</h2>
+        </section>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- المنتجات ستظهر هنا تلقائياً بواسطة JavaScript -->
+        </div>
+
+    </main>
+
+    <!-- Modal 1: نافذة تسجيل دخول الأدمن الاحترافية -->
+    <div class="modal-overlay" id="adminLoginModal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeAdminLoginModal()">&times;</button>
+            <div class="modal-header">
+                <h3>🔐 تسجيل دخول الأدمن</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">قم بترك اسم المستخدم فارغاً واستخدم كلمة المرور: <b>admin123</b></p>
+            </div>
+            
+            <form id="adminLoginForm" onsubmit="submitAdminLogin(event)">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label for="adminUser">اسم المستخدم (اختياري)</label>
+                    <input type="text" id="adminUser" placeholder="admin">
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label for="adminPass">كلمة المرور</label>
+                    <input type="password" id="adminPass" placeholder="••••••••" required>
+                    <span class="error-msg" id="adminAuthError">كلمة المرور غير صحيحة! حاول مجدداً.</span>
+                </div>
+
+                <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 0.5rem;">دخول اللوحة</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 2: نافذة طلب الشراء للزبون -->
+    <div class="modal-overlay" id="orderModal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeOrderModal()">&times;</button>
+            <div class="modal-header">
+                <h3>إتمام طلب الشراء</h3>
+                <p id="modalProductTitle" style="color: var(--secondary-wood); font-weight:700; margin-top:0.3rem;"></p>
+            </div>
+            
+            <form id="orderForm" onsubmit="event.preventDefault();">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label for="custName">الاسم الكامل</label>
+                    <input type="text" id="custName" placeholder="أدخل اسمك الكريِم" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label for="custAddress">العنوان / المدينة</label>
+                    <input type="text" id="custAddress" placeholder="مثال: رام الله - شارع الإرسال" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label for="custPhone">رقم الهاتف</label>
+                    <input type="text" id="custPhone" placeholder="مثال: 059XXXXXXX أو +970..." required>
+                    <span class="error-msg" id="phoneError">يرجى إدخال رقم هاتف صحيح يبدأ بـ (059, 056, 052, 054 أو +970, +972)</span>
+                </div>
+
+                <label style="font-weight:700; color:var(--primary-wood); font-size:0.9rem;">إرسال الطلب عبر الواتساب إلى:</label>
+       
