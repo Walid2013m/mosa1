@@ -45,7 +45,7 @@
         header {
             background: linear-gradient(135deg, var(--primary-wood), #1a0f0a);
             color: var(--white);
-            padding: 1rem 2rem;
+            padding: 1rem 1.5rem;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -66,7 +66,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 800;
             color: var(--accent-gold);
             text-decoration: none;
@@ -103,10 +103,12 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            position: relative;
+            z-index: 105; /* ضمان بقاء زر الأدمن أعلى التراكبات */
         }
 
         .btn {
-            padding: 0.6rem 1.4rem;
+            padding: 0.6rem 1.2rem;
             border-radius: 8px;
             border: none;
             font-weight: 700;
@@ -116,7 +118,9 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .btn-gold {
@@ -135,7 +139,7 @@
             color: var(--accent-gold);
         }
 
-        .btn-outline:hover {
+        .btn-outline:hover, .btn-outline:active {
             background: var(--accent-gold);
             color: var(--primary-wood);
         }
@@ -156,19 +160,19 @@
             background: linear-gradient(rgba(44, 24, 16, 0.85), rgba(44, 24, 16, 0.85)), 
                         url('https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?auto=format&fit=crop&w=1350&q=80') center/cover;
             color: var(--white);
-            padding: 4rem 1rem;
+            padding: 3.5rem 1rem;
             text-align: center;
             border-bottom: 4px solid var(--accent-gold);
         }
 
         .hero h1 {
-            font-size: 2.8rem;
+            font-size: 2.2rem;
             margin-bottom: 0.8rem;
             color: var(--accent-gold);
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto;
             color: #e0e0e0;
@@ -179,18 +183,18 @@
            ========================================================== */
         .container {
             max-width: 1200px;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
+            margin: 2.5rem auto;
+            padding: 0 1.2rem;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             position: relative;
         }
 
         .section-title h2 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--primary-wood);
             display: inline-block;
         }
@@ -207,8 +211,8 @@
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
         }
 
         /* كرت المنتج */
@@ -225,13 +229,13 @@
         }
 
         .product-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.12);
         }
 
         .product-img-wrapper {
             width: 100%;
-            height: 240px;
+            height: 220px;
             overflow: hidden;
             background-color: #f0f0f0;
             position: relative;
@@ -256,7 +260,7 @@
         }
 
         .product-title {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: var(--primary-wood);
             margin-bottom: 0.4rem;
             font-weight: 700;
@@ -279,7 +283,7 @@
         }
 
         .product-price {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 800;
             color: var(--secondary-wood);
         }
@@ -312,12 +316,12 @@
            ========================================================== */
         .admin-panel {
             background: var(--white);
-            padding: 2rem;
+            padding: 1.8rem;
             border-radius: 12px;
             box-shadow: var(--shadow);
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             border-right: 5px solid var(--accent-gold);
-            display: none; /* مخفي بشكل افتراضي */
+            display: none;
         }
 
         .admin-panel.active {
@@ -336,8 +340,8 @@
 
         .admin-form {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
         }
 
         .form-group {
@@ -356,7 +360,7 @@
             font-size: 0.9rem;
         }
 
-        .form-group input, .form-group textarea {
+        .form-group input, .form-group textarea, .form-group select {
             padding: 0.7rem;
             border: 1px solid #ddd;
             border-radius: 6px;
@@ -365,7 +369,7 @@
             transition: var(--transition);
         }
 
-        .form-group input:focus, .form-group textarea:focus {
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
             border-color: var(--secondary-wood);
             box-shadow: 0 0 0 3px rgba(139, 90, 43, 0.1);
         }
@@ -379,12 +383,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(4px);
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 2000;
             opacity: 0;
             pointer-events: none;
             transition: var(--transition);
@@ -398,10 +402,10 @@
         .modal-card {
             background: var(--white);
             width: 90%;
-            max-width: 450px;
+            max-width: 420px;
             border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            padding: 1.8rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             transform: translateY(20px);
             transition: var(--transition);
             position: relative;
@@ -412,30 +416,31 @@
         }
 
         .modal-header {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             text-align: center;
         }
 
         .modal-header h3 {
             color: var(--primary-wood);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
 
         .modal-close {
             position: absolute;
             top: 15px;
-            left: 20px;
+            left: 15px;
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             cursor: pointer;
             color: var(--text-muted);
+            line-height: 1;
         }
 
         .error-msg {
             color: var(--danger);
             font-size: 0.85rem;
-            margin-top: 0.2rem;
+            margin-top: 0.3rem;
             display: none;
         }
 
@@ -460,16 +465,35 @@
            ========================================================== */
         @media (max-width: 768px) {
             .header-container {
-                flex-direction: column;
-                align-items: stretch;
+                display: grid;
+                grid-template-columns: 1fr auto;
+                align-items: center;
+                gap: 0.8rem;
             }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+
             .search-bar {
+                grid-column: 1 / -1;
                 max-width: 100%;
                 order: 3;
             }
-            .hero h1 {
-                font-size: 2rem;
+
+            .nav-actions {
+                justify-self: end;
             }
+
+            .btn {
+                padding: 0.5rem 0.9rem;
+                font-size: 0.85rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
             .whatsapp-options {
                 flex-direction: column;
             }
@@ -488,14 +512,14 @@
         <div class="header-container">
             <a href="#" class="logo">🪵 أركان للتحف الخشبية</a>
             
-            <div class="search-bar">
-                <input type="text" id="searchInput" oninput="filterProducts()" placeholder="ابحث عن تحفة فنية...">
-            </div>
-
             <div class="nav-actions">
                 <button class="btn btn-outline" id="adminToggleBtn" onclick="openAdminLoginModal()">
                     🔒 دخول الأدمن
                 </button>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="searchInput" oninput="filterProducts()" placeholder="ابحث عن تحفة فنية...">
             </div>
         </div>
     </header>
@@ -528,7 +552,7 @@
 
                 <div class="form-group">
                     <label for="pImgType">مصدر الصورة</label>
-                    <select id="pImgType" onchange="toggleImgInput()" style="padding:0.7rem; border-radius:6px; border:1px solid #ddd;">
+                    <select id="pImgType" onchange="toggleImgInput()">
                         <option value="url">رابط صورة (URL)</option>
                         <option value="file">رفع من الجهاز</option>
                     </select>
@@ -566,13 +590,13 @@
 
     </main>
 
-    <!-- Modal 1: نافذة تسجيل دخول الأدمن الاحترافية -->
+    <!-- Modal 1: نافذة تسجيل دخول الأدمن -->
     <div class="modal-overlay" id="adminLoginModal">
         <div class="modal-card">
             <button class="modal-close" onclick="closeAdminLoginModal()">&times;</button>
             <div class="modal-header">
                 <h3>🔐 تسجيل دخول الأدمن</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">قم بترك اسم المستخدم فارغاً واستخدم كلمة المرور: <b>admin123</b></p>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.3rem;">كلمة المرور: <b>admin123</b></p>
             </div>
             
             <form id="adminLoginForm" onsubmit="submitAdminLogin(event)">
@@ -612,11 +636,4 @@
                     <input type="text" id="custAddress" placeholder="مثال: رام الله - شارع الإرسال" required>
                 </div>
 
-                <div class="form-group" style="margin-bottom: 1rem;">
-                    <label for="custPhone">رقم الهاتف</label>
-                    <input type="text" id="custPhone" placeholder="مثال: 059XXXXXXX أو +970..." required>
-                    <span class="error-msg" id="phoneError">يرجى إدخال رقم هاتف صحيح يبدأ بـ (059, 056, 052, 054 أو +970, +972)</span>
-                </div>
-
-                <label style="font-weight:700; color:var(--primary-wood); font-size:0.9rem;">إرسال الطلب عبر الواتساب إلى:</label>
-       
+ 
